@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Age Calculator</title>
+        <link rel="stylesheet" href="style.css"/>
+       
+    </head>
+    <body>
+        <div class="card">
+            <header>
+                <h1><u>Age Calculator</u></h1>
+            </header>
+        <div>
+        <label><u>Enter Your Date of Birth</u></label><br>
+        <input id="inputDob" type="Date" value="24-07-2003"/>
+    </div>
+    <br/>
+    <div>
+        <label><u>Enter the Current Date</u></label><br>
+        <input id="currentdate" type="date" value="08-07-2025"/>
+    </div>
+    <br/>
+    <button type="button" onclick="getDOB()"><u>Calculate It</u></button>
+    <br/>
+    <div id="currentAge"></div>
+
+    </div>
+    <style>
+        
+        body{
+            background-image: url('/img/background1.jpg');
+            background-attachment: fixed;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+            font-family: arial,sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            
+        }
+        .card{
+            background: rgba(226, 222, 222, 0.412);
+            padding: 35px;
+            border-radius: 12px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            width: 300px;
+            text-align: center;
+        }
+        header h1{
+            margin-bottom: 20px;
+            color: #333;
+        }
+        label{
+            display: block;
+            margin-bottom: 9px;
+            font-weight: 700;
+            font-size: larger;
+        }
+        input[type="date"]{
+            border: 1px solid #605c5ca5;
+            border-radius: 20px;
+            padding: 16px;
+            width: 100%;
+            box-sizing: border-box;
+            margin-bottom: 25px;
+            font-size: larger;
+            font-weight: bolder;
+        }
+        button{
+            background-color: #007bff;
+            border: none;
+            color: rgb(255, 255, 255);
+            padding: 10px 20px;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+        button:hover{
+            background-color: #0056b3;
+        }
+        #currentAge{
+            margin-top: 20px;
+            font-size: 18px;
+            font-weight: bold;
+        }
+    </style>
+    <script>
+        function getDOB() {
+    
+    const dobInput = document.getElementById('inputDob').value;
+    const currentDateInput = document.getElementById('currentdate').value;
+    
+    if (!dobInput || !currentDateInput) {
+        alert('Please enter the both Date of Birth and Current Date.');
+        return;
+    }
+    
+    const dob = new Date(dobInput);
+    const currentDate = new Date(currentDateInput);
+    
+    let age = currentDate.getFullYear() - dob.getFullYear();
+    const monthDifference = currentDate.getMonth() - dob.getMonth();
+    
+    if (monthDifference < 0 || (monthDifference === 0 && currentDate.getDate() < dob.getDate())) {
+        age--;
+    }
+    
+    document.getElementById('currentAge').textContent = `Your ${age} - years old buddy.`;
+}
+    </script>
+    </body>
+</html>
